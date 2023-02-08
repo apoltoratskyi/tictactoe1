@@ -5,28 +5,29 @@
     <title>Title</title>
     <style>
         body {
-            background-color: #1b1b1b;
+            background-color: #504b4b;
             margin-top: 10%;
             height: 100%;
+            font-size: 200%;
         }
         #table {
             margin: auto;
             width: 25%;
             height: 25%;
         }
-        .col {
+        tr {
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        .row {
+        td {
             display: flex;
-            height: 15vh;
-        }
-        .vertical {
-            border-left: 6px solid #A9A9A9FF;
-            height:100%;
+            height: 100px;
+            width:100px;
+            align-items: center;
+            justify-content: center;
+            border-width: thick;
         }
         button {
             width: 150px;
@@ -52,31 +53,46 @@
 <div id="table">
     <script>
       let table = document.getElementById("table");
-      for (let y = 1; y <= 3; y++) {
-        let row = document.createElement("div");
-        row.setAttribute("class", "row")
-        for (let x = 1; x <= 3; x++) {
-          let col = document.createElement("div");
-          col.setAttribute("class", "col");
-          col.setAttribute("index", y + "." + x);
-          // col.innerHTML = y + "." + x;
-          row.appendChild(col);
-          if (x !== 3) {
-            let vertical = document.createElement("div");
-            vertical.setAttribute("class", "vertical");
-            row.appendChild(vertical);
-          } else if (y !== 1) {
-            let hr = document.createElement("hr");
-            table.appendChild(hr);
+
+      // create the table rows
+      for (let i = 0; i < 3; i++) {
+        let tr = document.createElement("tr");
+
+        for (let j = 0; j < 3; j++) {
+          let td = document.createElement("td");
+          td.setAttribute("index", i + "." + j);
+          if (j == 2 && i != 2) {
+            td.style.borderStyle = "none none solid none";
+          } else if (i == 2 && j != 2) {
+            td.style.borderStyle = "none solid none none";
+          } else if (i == 2 && j == 2) {
+            td.style.borderStyle = "none none none none";
+          } else {
+            td.style.borderStyle = "none solid solid none";
           }
+          tr.appendChild(td);
         }
-        table.appendChild(row);
+
+        table.appendChild(tr);
       }
     </script>
+    <script>
+      window.addEventListener('load', function () {
+        let buttons = document.getElementById("buttons");
+        let grid = document.getElementById("table");
+
+        buttons.addEventListener("click", (event) => {
+          let first = event.target.id;
+          grid.addEventListener("click", (e) => {
+            e.target.innerHTML = first;
+          })
+        });
+      })
+    </script>
 </div>
-<div class="buttons">
-    <button id="x">X</button>
-    <button id="o">O</button>
+<div class="buttons" id="buttons">
+    <button id="&#10060">&#10060</button>
+    <button id="&#11093">&#11093</button>
 </div>
 </body>
 </html>
