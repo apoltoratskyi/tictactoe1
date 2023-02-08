@@ -76,19 +76,6 @@
         table.appendChild(tr);
       }
     </script>
-    <script>
-      window.addEventListener('load', function () {
-        let buttons = document.getElementById("buttons");
-        let grid = document.getElementById("table");
-
-        buttons.addEventListener("click", (event) => {
-          let first = event.target.id;
-          grid.addEventListener("click", (e) => {
-            e.target.innerHTML = first;
-          })
-        });
-      })
-    </script>
 </div>
 <div class="buttons" id="buttons">
     <button id="&#10060">&#10060</button>
