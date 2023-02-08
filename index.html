@@ -10,18 +10,37 @@
             height: 100%;
             font-size: 200%;
         }
+        aside {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         #table {
-            margin: auto;
-            width: 25%;
-            height: 25%;
+            width: 300px;
+            height: 300px;
+        }
+        .left {
+            width: 20%;
+        }
+        .right {
+            width: 80%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: nowrap;
+            align-items: center;
+            flex-direction: column;
+        }
+        .row {
+            display: flex;
+
         }
         tr {
             width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
         }
-        td {
+        th,td {
             display: flex;
             height: 100px;
             width:100px;
@@ -30,7 +49,8 @@
             border-width: thick;
         }
         button {
-            width: 150px;
+            margin: 100px;
+            width: 100px;
             height: 30px;
             background-color: #A9A9A9FF;
         }
@@ -39,47 +59,63 @@
             text-decoration-line: underline;
             text-decoration-thickness: 2px;
         }
-        .buttons {
-            display: flex;
-            margin: 60px;
-            justify-content: space-evenly;
-        }
         hr {
             border: 3px solid #A9A9A9FF;
         }
     </style>
 </head>
 <body>
-<div id="table">
-    <script>
-      let table = document.getElementById("table");
+<div class="row">
+    <div class="left">
+        <div>
+            <aside>
+                <h3 style="color: #FFFFFFFF; font-family: cursive; margin-top: 0px">Score:</h3>
+                <table id="score" style="color: #FFFFFFFF">
+                    <tr>
+                        <th style="border-style: none solid none none">&#10060</th>
+                        <th>&#11093</th>
+                    </tr>
+                    <tr>
+                        <td id="x" style="border-style: none solid none none"></td>
+                        <td id="o"></td>
+                    </tr>
+                </table>
+            </aside>
+        </div>
+    </div>
+    <div class="right">
+        <div id="table">
+            <script>
+              let table = document.getElementById("table");
 
-      // create the table rows
-      for (let i = 0; i < 3; i++) {
-        let tr = document.createElement("tr");
+              // create the table rows
+              for (let i = 0; i < 3; i++) {
+                let tr = document.createElement("tr");
 
-        for (let j = 0; j < 3; j++) {
-          let td = document.createElement("td");
-          td.setAttribute("index", i + "." + j);
-          if (j == 2 && i != 2) {
-            td.style.borderStyle = "none none solid none";
-          } else if (i == 2 && j != 2) {
-            td.style.borderStyle = "none solid none none";
-          } else if (i == 2 && j == 2) {
-            td.style.borderStyle = "none none none none";
-          } else {
-            td.style.borderStyle = "none solid solid none";
-          }
-          tr.appendChild(td);
-        }
+                for (let j = 0; j < 3; j++) {
+                  let td = document.createElement("td");
+                  td.setAttribute("index", i + "." + j);
+                  if (j == 2 && i != 2) {
+                    td.style.borderStyle = "none none solid none";
+                  } else if (i == 2 && j != 2) {
+                    td.style.borderStyle = "none solid none none";
+                  } else if (i == 2 && j == 2) {
+                    td.style.borderStyle = "none none none none";
+                  } else {
+                    td.style.borderStyle = "none solid solid none";
+                  }
+                  tr.appendChild(td);
+                }
 
-        table.appendChild(tr);
-      }
-    </script>
-</div>
-<div class="buttons" id="buttons">
-    <button id="&#10060">&#10060</button>
-    <button id="&#11093">&#11093</button>
+                table.appendChild(tr);
+              }
+            </script>
+        </div>
+        <div class="buttons" id="buttons">
+            <button id="&#10060">&#10060</button>
+            <button id="&#11093">&#11093</button>
+        </div>
+    </div>
 </div>
 </body>
 </html>
